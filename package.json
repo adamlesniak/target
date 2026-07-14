@@ -11,7 +11,13 @@
     "format:check": "nx format:check",
     "format:write": "nx format:write",
     "lint": "nx run-many -t lint",
-    "build": "nx run-many -t build --all"
+    "build": "nx run-many -t build --all",
+    "build:bff": "nx build bff",
+    "build:shell": "nx build shell",
+    "docker:build:shell": "npm run build:shell && docker build -f frontend/apps/shell/Dockerfile.shell -t allianz/target-shell:latest .",
+    "docker:build:bff": "npm run build:bff && docker build -f backend/apps/bff/Dockerfile.bff -t allianz/target-bff:latest .",
+    "helm:install": "helm install target ./helm",
+    "helm:uninstall": "helm uninstall target || true"
   },
   "private": true,
   "dependencies": {
@@ -31,8 +37,8 @@
     "es-module-shims": "^2.8.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "~7.8.2",
-    "zone.js": "0.16.1",
-    "zod": "4.3.6"
+    "zod": "4.3.6",
+    "zone.js": "0.16.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "21.2.3",
@@ -47,7 +53,9 @@
     "@nestjs/schematics": "11.0.9",
     "@nestjs/testing": "^11.1.17",
     "@ngrx/signals": "^21.0.1",
+    "@nx-tools/nx-container": "^7.3.0",
     "@nx/angular": "22.6.1",
+    "@nx/docker": "^22.6.1",
     "@nx/eslint": "22.6.1",
     "@nx/eslint-plugin": "22.6.1",
     "@nx/jest": "22.6.1",

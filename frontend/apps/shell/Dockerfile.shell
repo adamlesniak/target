@@ -1,0 +1,10 @@
+FROM node:alpine
+
+WORKDIR /app
+
+COPY dist/frontend/apps/shell/browser ./browser
+COPY scripts/static-client-server.js ./
+
+EXPOSE 30080
+
+CMD ["node", "static-client-server.js", "./browser", "80"]

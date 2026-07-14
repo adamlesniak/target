@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "target.fullname" . }}-shell
+  labels:
+    app: {{ include "target.fullname" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "target.fullname" . }}-shell
+  template:
+    metadata:
+      labels:
+        app: {{ include "target.fullname" . }}-shell
+    spec:
+      containers:
+        - name: shell
+          image: "{{ .Values.image.shell.repository }}:{{ .Values.image.shell.tag }}"
+          imagePullPolicy: {{ .Values.image.shell.pullPolicy }}
+          ports:
+            - containerPort: 30080
+          resources: {}

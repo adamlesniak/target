@@ -1,0 +1,31 @@
+replicaCount: 1
+
+image:
+  shell:
+    repository: allianz/target-shell
+    tag: latest
+    pullPolicy: IfNotPresent
+  bff:
+    repository: allianz/target-bff
+    tag: latest
+    pullPolicy: IfNotPresent
+
+service:
+  shell:
+    type: ClusterIP
+    port: 30080
+    targetPort: 30080
+  bff:
+    type: ClusterIP
+    port: 3000
+    targetPort: 3000
+
+ingress:
+  enabled: true
+  annotations: {}
+  hosts:
+    - host: localhost
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []

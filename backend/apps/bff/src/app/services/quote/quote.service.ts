@@ -1,5 +1,7 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import { Injectable } from '@nestjs/common';
-import { QuoteRequestDto, QuoteResponseDto } from '@target/interfaces';
+
+import { QuoteRequestDto, QuoteResponseDto } from '../../../../../../../shared/interfaces';
 
 @Injectable()
 export class QuoteService {

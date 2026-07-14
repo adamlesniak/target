@@ -1,0 +1,15 @@
+1. Build the shell and bff Docker images:
+   npm run build:shell
+   npm run build:bff
+   docker build -f Dockerfile.shell -t ${CHART_NAME}-shell:latest .
+   docker build -f Dockerfile.bff -t ${CHART_NAME}-bff:latest .
+
+2. Install the chart:
+   helm install ${RELEASE_NAME} ./helm
+
+3. Get application access:
+   kubectl port-forward svc/${RELEASE_NAME}-shell 30080:80
+   open http://localhost:30080
+
+4. Uninstall the chart:
+   helm uninstall ${RELEASE_NAME}

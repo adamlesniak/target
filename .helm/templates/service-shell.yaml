@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "target.fullname" . }}-shell
+  labels:
+    app: {{ include "target.fullname" . }}-shell
+spec:
+  type: {{ .Values.service.shell.type }}
+  ports:
+    - port: {{ .Values.service.shell.port }}
+      targetPort: {{ .Values.service.shell.targetPort }}
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ include "target.fullname" . }}-shell
