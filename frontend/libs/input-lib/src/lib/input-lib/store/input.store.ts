@@ -15,6 +15,7 @@ const initialState: InputState = {
     valid: true,
     error: null,
   },
+  geburtsdatum: { value: '2006-10-12', valid: true, error: null },
   laufzeit: { value: 10, valid: true, error: null },
   beitragszahlungsweise: { value: 'Einmalbeitrag', valid: true, error: null },
   rentenzahlungsweise: { value: 'Monatliche Renten', valid: true, error: null },
@@ -69,21 +70,19 @@ export const InputStore = signalStore(
 
       patchState(store, { uiState: validatedState });
     },
-    calculate: async (): Promise<void> => {
-      const quoteDto = transformUiStateToInputDto(store.uiState());
+    calculate: async (input: QuoteRequestDto): Promise<void> => {
+      const quoteDto = {
+        ...input,
+      };
       const validationResult = await InputDtoSchema.safeParseAsync(quoteDto);
 
-      try {
-        if (!validationResult.success) {
-          throw new Error('Invalid input');
-        }
-
-        const quote = await lastValueFrom(quoteService.calculateQuote(quoteDto as QuoteRequestDto));
-
-        patchState(store, { uiState: { ...store.uiState(), quote } });
-      } catch (error) {
-        console.error(error);
+      if (!validationResult.success) {
+        throw new Error('Invalid input');
       }
+
+      const quote = await lastValueFrom(quoteService.calculateQuote(quoteDto as QuoteRequestDto));
+
+      patchState(store, { uiState: { ...store.uiState(), quote } });
     },
   })),
 );

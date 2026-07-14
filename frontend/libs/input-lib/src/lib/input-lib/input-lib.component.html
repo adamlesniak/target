@@ -1,10 +1,15 @@
-<div nxLayout="grid maxwidth">
+<form nxLayout="grid maxwidth">
   <div nxRow>
     <div nxCol="12">
       <div class="nx-margin-bottom-4m">
         <div nxRow>
           <div nxCol="12">
-            <!-- TODO: Add datepicker here -->
+            <nx-formfield [label]="'Geburtsdatum'" appearance="auto" floatLabel="auto">
+              <input nxInput type="date" [formField]="inputLibForm.geburtsdatum" />
+            </nx-formfield>
+            @if (inputLibForm.geburtsdatum().invalid()) {
+              <nx-error nxFormfieldError [showIcon]="true">{{ inputLibForm.geburtsdatum().errors()[0].message }}</nx-error>
+            }
           </div>
         </div>
       </div>
@@ -13,7 +18,7 @@
         <div nxRow>
           <div nxCol="12,12,8,8">
             <nx-formfield [label]="'Leistungs-/ Beitragsvorgabe'">
-              <nx-dropdown [value]="inputStore.uiState().leistungsVorgabe.value" (valueChange)="updateInputs({ key: 'leistungsVorgabe', value: $event })">
+              <nx-dropdown [formField]="inputLibForm.leistungsVorgabe">
                 <nx-dropdown-item [value]="'Beitrag'">Beitrag</nx-dropdown-item>
                 <nx-dropdown-item [value]="'Einmalbeitrag'">Einmalbeitrag</nx-dropdown-item>
                 <nx-dropdown-item [value]="'Garantierte Mindestrente'">Garantierte Mindestrente</nx-dropdown-item>
@@ -25,28 +30,12 @@
           </div>
           <div nxCol="12,12,4,4">
             <nx-formfield [label]="'Beitrag'" appearance="auto" floatLabel="auto">
-              <input
-                nxInput
-                type="number"
-                [value]="inputStore.uiState().beitrag.value"
-                (input)="
-                  updateInputs({
-                    key: 'beitrag',
-                    value: +$any($event.target).value,
-                  })
-                "
-              />
+              <input nxInput type="number" [formField]="inputLibForm.beitrag" />
             </nx-formfield>
           </div>
         </div>
-        @if (inputStore.uiState().beitrag.error) {
-          <div nxRow class="nx-margin-top-2xs nx-margin-bottom-2xs">
-            <div nxCol="12">
-              <nx-error nxFormfieldError [showIcon]="true">
-                {{ inputStore.uiState().beitrag.error }}
-              </nx-error>
-            </div>
-          </div>
+        @if (inputLibForm.beitrag().invalid()) {
+          <nx-error nxFormfieldError [showIcon]="true">{{ inputLibForm.beitrag().errors()[0].message }}</nx-error>
         }
       </div>
 
@@ -54,7 +43,7 @@
         <div nxRow>
           <div nxCol="12,12,8,8">
             <nx-formfield [label]="'Berechnung der Laufzeit'">
-              <nx-dropdown [value]="inputStore.uiState().berechnungDerLaufzeit.value" (valueChange)="updateInputs({ key: 'berechnungDerLaufzeit', value: $event })">
+              <nx-dropdown [formField]="inputLibForm.berechnungDerLaufzeit">
                 <nx-dropdown-item [value]="'Alter bei Rentenbeginn'">Alter bei Rentenbeginn</nx-dropdown-item>
                 <nx-dropdown-item [value]="'Aufschubdauer'">Aufschubdauer</nx-dropdown-item>
               </nx-dropdown>
@@ -62,46 +51,32 @@
           </div>
           <div nxCol="12,12,4,4">
             <nx-formfield [label]="'Jahre'" appearance="auto" floatLabel="auto">
-              <input
-                nxInput
-                type="number"
-                [value]="inputStore.uiState().laufzeit.value"
-                (input)="
-                  updateInputs({
-                    key: 'laufzeit',
-                    value: +$any($event.target).value,
-                  })
-                "
-              />
+              <input nxInput type="number" [formField]="inputLibForm.laufzeit" />
             </nx-formfield>
           </div>
         </div>
-        @if (inputStore.uiState().laufzeit.error) {
-          <div nxRow class="nx-margin-top-2xs nx-margin-bottom-2xs">
-            <div nxCol="12">
-              <nx-error nxFormfieldError [showIcon]="true">
-                {{ inputStore.uiState().laufzeit.error }}
-              </nx-error>
-            </div>
-          </div>
+        @if (inputLibForm.laufzeit().invalid()) {
+          <nx-error nxFormfieldError [showIcon]="true">{{ inputLibForm.laufzeit().errors()[0].message }}</nx-error>
         }
       </div>
 
-      <div nxRow class="nx-margin-bottom-2m">
-        <div nxCol="12">
-          <nx-formfield [label]="'Beitragszahlungsweise'">
-            <nx-dropdown [value]="inputStore.uiState().beitragszahlungsweise.value" (valueChange)="updateInputs({ key: 'beitragszahlungsweise', value: $event })">
-              <nx-dropdown-item [value]="'Einmalbeitrag'">Einmalbeitrag</nx-dropdown-item>
-              <nx-dropdown-item [value]="'Monatliche Beiträge'">Monatliche Beiträge</nx-dropdown-item>
-            </nx-dropdown>
-          </nx-formfield>
+      <div class="nx-margin-bottom-2m">
+        <div nxRow>
+          <div nxCol="12">
+            <nx-formfield [label]="'Beitragszahlungsweise'">
+              <nx-dropdown [formField]="inputLibForm.beitragszahlungsweise">
+                <nx-dropdown-item [value]="'Einmalbeitrag'">Einmalbeitrag</nx-dropdown-item>
+                <nx-dropdown-item [value]="'Monatliche Beiträge'">Monatliche Beiträge</nx-dropdown-item>
+              </nx-dropdown>
+            </nx-formfield>
+          </div>
         </div>
       </div>
 
       <div nxRow>
         <div nxCol="12">
           <nx-formfield [label]="'Rentenzahlungsweise'">
-            <nx-dropdown [value]="inputStore.uiState().rentenzahlungsweise.value" (valueChange)="updateInputs({ key: 'rentenzahlungsweise', value: $event })">
+            <nx-dropdown [formField]="inputLibForm.rentenzahlungsweise">
               <nx-dropdown-item [value]="'Monatliche Renten'">Monatliche Renten</nx-dropdown-item>
               <nx-dropdown-item [value]="'Vierteljährliche Renten'">Vierteljährliche Renten</nx-dropdown-item>
               <nx-dropdown-item [value]="'Halbjährliche Renten'">Halbjährliche Renten</nx-dropdown-item>
@@ -114,7 +89,13 @@
   </div>
   <div nxRow>
     <div nxCol="4">
-      <button nxButton type="button" (click)="calculate()">Berechnen</button>
+      <button nxButton type="button" [disabled]="isLoading()" (click)="calculate()">
+        @if (isLoading()) {
+          <nx-spinner size="medium"></nx-spinner>
+        } @else {
+          <ng-container>Berechnen</ng-container>
+        }
+      </button>
     </div>
     <div nxCol="8">
       @if (inputStore.uiState().quote.beitrag.einmalbeitrag || inputStore.uiState().quote.leistungsmerkmale.garantierteMindestrente) {
@@ -133,4 +114,10 @@
       }
     </div>
   </div>
-</div>
+
+  @if (isError(); as error) {
+    <div nxRow class="nx-margin-top-2m">
+      <nx-error nxFormfieldError [showIcon]="true">{{ error.message }}</nx-error>
+    </div>
+  }
+</form>

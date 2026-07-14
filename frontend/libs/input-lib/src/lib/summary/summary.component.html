@@ -1,0 +1,66 @@
+<div class="quote-container">
+  <div nxLayout="grid maxwidth">
+    <h1>Angebotsdetails</h1>
+    <div nxRow class="nx-margin-top-2m">
+      <div nxCol="12,12,4,4">
+        <h3>Basisdaten</h3>
+        <ul>
+          <li>
+            Geburtsdatum:
+            {{ inputStore.uiState().quote.basisdaten.geburtsdatum }}
+          </li>
+          <li>
+            Versicherungsbeginn:
+            {{ inputStore.uiState().quote.basisdaten.versicherungsbeginn }}
+          </li>
+          <li>
+            Garantieniveau:
+            {{ inputStore.uiState().quote.basisdaten.garantieniveau }}
+          </li>
+          <li>
+            AlterSRentenbeginn:
+            {{ inputStore.uiState().quote.basisdaten.alterBeiRentenbeginn }}
+          </li>
+          <li>
+            Aufschubdauer:
+            {{ inputStore.uiState().quote.basisdaten.aufschubdauer }}
+          </li>
+          <li>
+            Beitragszahlungsdauer:
+            {{ inputStore.uiState().quote.basisdaten.beitragszahlungsdauer }}
+          </li>
+        </ul>
+      </div>
+      <div nxCol="12,12,4,4">
+        <h3>Leistungsmerkmale</h3>
+        <ul>
+          <li>
+            Geburtsdatum:
+            {{ inputStore.uiState().quote.leistungsmerkmale.garantierteMindestrente }}
+          </li>
+          <li>
+            Einmaliges Garantiekapital:
+            {{ inputStore.uiState().quote.leistungsmerkmale.einmaligesGarantiekapital }}
+          </li>
+          <li>
+            Todesfallleistung bei Altersrentenbezug:
+            {{ inputStore.uiState().quote.basisdaten.garantieniveau }}
+          </li>
+        </ul>
+      </div>
+      <div nxCol="12,12,4,4">
+        <h3>Beitrag</h3>
+        <ul>
+          <li>
+            Geburtsdatum:
+            {{ inputStore.uiState().quote.beitrag.einmalbeitrag }}
+          </li>
+          <li>
+            Einmaliges Garantiekapital:
+            {{ inputStore.uiState().quote.beitrag.beitragsdynamik }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

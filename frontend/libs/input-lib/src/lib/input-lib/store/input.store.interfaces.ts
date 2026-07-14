@@ -1,4 +1,5 @@
 import { QuoteResponseDto } from '@target/interfaces';
+import { Beitragszahlungsweise, BerechnungDerLaufzeit, Leistungsvorgabe, Rentenzahlungsweise } from '@target/validations';
 
 interface InputField<T> {
   value: T;
@@ -7,12 +8,13 @@ interface InputField<T> {
 }
 
 export interface InputState {
-  leistungsVorgabe: InputField<string>;
+  leistungsVorgabe: InputField<Leistungsvorgabe>;
   beitrag: InputField<number>;
-  berechnungDerLaufzeit: InputField<string>;
+  geburtsdatum: InputField<string>;
+  berechnungDerLaufzeit: InputField<BerechnungDerLaufzeit>;
   laufzeit: InputField<number>;
-  beitragszahlungsweise: InputField<string>;
-  rentenzahlungsweise: InputField<string>;
+  beitragszahlungsweise: InputField<Beitragszahlungsweise>;
+  rentenzahlungsweise: InputField<Rentenzahlungsweise>;
   quote: QuoteResponseDto;
 }
 
