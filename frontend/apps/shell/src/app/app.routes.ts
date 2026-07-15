@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { InputLibComponent, SummaryComponent } from '@target/input-lib';
+import { InputLibComponent, SummaryComponent, summaryGuard } from '@target/input-lib';
 
 const ROUTES = {
   INPUTS: 'inputs',
@@ -16,6 +16,7 @@ export const appRoutes: Route[] = [
   {
     path: ROUTES.SUMMARY,
     component: SummaryComponent,
+    canActivate: [summaryGuard],
   },
   {
     path: ROUTES.INPUTS,
