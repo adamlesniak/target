@@ -19,5 +19,5 @@ spec:
           image: "{{ .Values.image.shell.repository }}:{{ .Values.image.shell.tag }}"
           imagePullPolicy: {{ .Values.image.shell.pullPolicy }}
           ports:
-            - containerPort: 30080
+            - containerPort: 3080
           resources: {}

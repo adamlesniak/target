@@ -4,7 +4,7 @@ const path = require('path');
 const url = require('url');
 
 const staticDir = path.resolve(process.argv[2] || './browser');
-const port = parseInt(process.argv[3], 10) || 80;
+const port = parseInt(process.argv[3], 10) || 3080;
 
 const mimeTypes = {
   '.html': 'text/html',

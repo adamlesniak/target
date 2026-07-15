@@ -2,6 +2,29 @@
 
 A modern NX-Monorepo project featuring a backend service and a frontend application.
 
+## Development or quick start
+
+Install necessary tools such as helm and minikube, kubectl, install docker and sockets.
+
+```sh
+brew install helm
+brew install minikube
+```
+
+Replication of a stage on local machine
+
+```sh
+
+npm run install
+npm run docker:build:shell
+npm run docker:build:bff
+
+npm run helm:install
+
+kubectl port-forward svc/target-target-shell 3080:3080
+kubectl port-forward svc/target-target-bff 3000:3000
+```
+
 ## 🚀 Quick Start
 
 1. **Prerequisites**
@@ -136,13 +159,14 @@ So that it's more maintainable and extensible
 As a developer
 I want a DevOps setup
 So that I can easily develop, containerize, deploy and test the application inside a local k8s cluster
-``` 
+```
 
 **Acceptance Criteria:**
+
 - ✅ A Docker Image can be built for both the UI (shell frontend app) and BFF (backend for frontend app) using:
   - `npm run docker:build:shell`
   - `npm run docker:build:bff`
 - ✅ Both services can be deployed to a local Kubernetes cluster via Helm chart in the `./helm` directory using `npm run helm:install`.
 - ✅ The HELM chart can be uninstalled using `npm run helm:uninstall`.
-- ✅ The UI is accessible from the host machine via [http://localhost:30080](http://localhost:30080).
+- ✅ The UI is accessible from the host machine via [http://localhost:3080](http://localhost:3080).
 - ✅ The application works as expected in the local k8s cluster, with successfully proxying API requests to the BFF and displaying the quote information.

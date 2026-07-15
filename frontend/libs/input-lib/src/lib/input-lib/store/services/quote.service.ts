@@ -8,6 +8,7 @@ export class QuoteService {
   private readonly http = inject(HttpClient);
 
   calculateQuote(quoteDto: QuoteRequestDto): Observable<QuoteResponseDto> {
-    return this.http.post<QuoteResponseDto>('/api/quote', quoteDto);
+    // TODO: To be pulled on build from env or json file.
+    return this.http.post<QuoteResponseDto>('http://localhost:3000/api/quote', quoteDto);
   }
 }

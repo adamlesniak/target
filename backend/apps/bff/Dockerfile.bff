@@ -5,8 +5,8 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci --omit=dev --legacy-peer-deps
 
-COPY dist/backend/apps/bff ./
+COPY dist/ ./
 
 EXPOSE 3000
 
-CMD ["node", "src/main.js"]
+CMD ["node", "backend/apps/bff/src/main.js"]
