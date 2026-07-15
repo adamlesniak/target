@@ -21,7 +21,7 @@ npm run docker:build:bff
 
 npm run helm:install
 
-kubectl port-forward svc/target-target-shell 3080:3080
+kubectl port-forward svc/target-target-shell 30080:30080
 kubectl port-forward svc/target-target-bff 3000:3000
 ```
 
@@ -168,5 +168,5 @@ So that I can easily develop, containerize, deploy and test the application insi
   - `npm run docker:build:bff`
 - ✅ Both services can be deployed to a local Kubernetes cluster via Helm chart in the `./helm` directory using `npm run helm:install`.
 - ✅ The HELM chart can be uninstalled using `npm run helm:uninstall`.
-- ✅ The UI is accessible from the host machine via [http://localhost:3080](http://localhost:3080).
+- ✅ The UI is accessible from the host machine via [http://localhost:30080](http://localhost:30080).
 - ✅ The application works as expected in the local k8s cluster, with successfully proxying API requests to the BFF and displaying the quote information.
