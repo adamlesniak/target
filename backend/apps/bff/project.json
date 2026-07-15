@@ -6,13 +6,10 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/dist/backend/apps/bff"],
       "options": {
-        "outputPath": "dist/backend/apps/bff",
-        "main": "backend/apps/bff/src/main.ts",
-        "tsConfig": "backend/apps/bff/tsconfig.app.json",
-        "assets": ["backend/apps/bff/src/assets"]
+        "command": "npx tsc -p backend/apps/bff/tsconfig.app.json --outDir dist/backend/apps/bff && npx tsc-alias -p backend/apps/bff/tsconfig.app.json --dir dist/backend/apps/bff --resolve-full-paths"
       },
       "configurations": {
         "development": {},
